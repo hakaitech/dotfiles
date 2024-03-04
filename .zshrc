@@ -82,11 +82,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='hx'
-# else
-#   export EDITOR='hx'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='/home/linuxbrew/.linuxbrew/bin/hx'
+ else
+   export EDITOR='/home/linuxbrew/.linuxbrew/bin/hx'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -101,6 +101,18 @@ alias zshconfig="sudo nano ~/.zshrc"
 alias reload="source ~/.zshrc"
 alias c="clear"
 alias e="exit"
+alias count="ls -l | wc -l"
+alias cp="cp -v "
+alias ls="ls -lAth"
+alias mv="mv -v "
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export GOROOT="/usr/local/go"
 export GOPATH="/home/hakaitech/sandbox"
@@ -109,6 +121,7 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/Postman
 export GO111MODULE="on"
+export ZELLIJ_CONFIG_FILE=/home/hakaitech/.config/zellij/config.kd
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export PATH=$PATH:$HOME/.cargo/bin
 # The next line updates PATH for the Google Cloud SDK.
