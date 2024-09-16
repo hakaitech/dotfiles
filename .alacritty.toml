@@ -1,1 +1,30 @@
-/home/hakaitech/.alacritty.toml
+import = [
+  "~/.config/alacritty/themes/themes/nordic.toml"
+]
+
+[window]
+dynamic_padding = true
+opacity = 1
+startup_mode = "Maximized"
+decorations = "None"
+
+[window.padding]
+x = 4
+y = 4
+
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = "/bin/zsh"
+args = [ "-l", "-c", "tmux -u a || tmux -u" ]
+
+[font]
+size = 11.75
+
+[font.normal]
+family = "nimbus mono ps"
+style = "Bold"
+
+[mouse]
+hide_when_typing = true
